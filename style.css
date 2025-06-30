@@ -1,0 +1,223 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000; /* Arka planı siyah yaptık */
+    color: #eee; /* Metin rengini beyaza yakın yaptık */
+    overflow: hidden; /* Buton kaçarken kaydırma çubuklarını engeller */
+    position: relative; /* Kalplerin konumlandırılması için */
+}
+
+/* Kalpler için CSS */
+body::before,
+body::after {
+    content: '❤️'; /* Kalp emojisi */
+    font-size: 3em; /* Kalp boyutu */
+    position: absolute;
+    z-index: 0; /* İçeriğin arkasında kalması için */
+    animation: pulse 1.5s infinite alternate; /* Kalbin hafifçe büyümesini sağlar */
+    color: #ff69b4; /* Pembe kalp rengi */
+}
+
+body::before {
+    top: 20px;
+    left: 20px;
+}
+
+body::after {
+    bottom: 20px;
+    right: 20px;
+}
+
+/* Diğer köşeler için de kalp ekleyebilirsiniz, örneğin: */
+/*
+body::nth-child(2)::before {
+    content: '❤️';
+    font-size: 3em;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 0;
+    animation: pulse 1.5s infinite alternate;
+    color: #ff69b4;
+}
+*/
+body::nth-child(2)::after {
+    content: '❤️';
+    font-size: 3em;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 0;
+    animation: pulse 1.5s infinite alternate;
+    color: #ff69b4;
+}
+
+
+.container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1); /* Hafif şeffaf beyaz kutu */
+    padding: 40px 60px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Gölgeyi belirginleştirdik */
+    position: relative; /* Butonların konumlandırılması için */
+    width: 90%;
+    max-width: 600px;
+    min-height: 300px; /* İçerik için yeterli alan sağlar */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1; /* İçeriğin kalplerin üzerinde kalması için */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Hafif kenarlık */
+}
+
+h1 {
+    color: #ffb6c1; /* Başlık rengini açık pembe yaptık */
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Başlığa gölge ekledik */
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Butonlar arası boşluk */
+    position: relative; /* Butonların konumlandırılması için */
+    width: 100%;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Buton gölgelerini güncelledik */
+    position: relative; /* "Hayır" butonu için */
+    z-index: 2; /* Butonların kalplerin ve kutunun üzerinde olması için */
+}
+
+#yesButton {
+    background-color: #008000; /* Daha koyu yeşil */
+    color: white;
+}
+
+#yesButton:hover {
+    background-color: #006400;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+#noButton {
+    background-color: #dc143c; /* Koyu kırmızı */
+    color: white;
+    position: absolute; /* JavaScript ile hareket ettirmek için */
+    left: 50%; /* Başlangıçta ortalanmış */
+    transform: translateX(calc(-50% + 150px)); /* "Evet"in sağında başlar, gap kadar kaydır */
+}
+
+#noButton:hover {
+    background-color: #b20c2f;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Sürpriz mesajın stilleri */
+#surpriseMessage {
+    margin-top: 40px;
+    animation: fadeIn 1s ease-out forwards; /* Görünüm animasyonu */
+    color: #ffebcd; /* Mesaj rengini açık turuncu yaptık */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+#surpriseMessage h2 {
+    color: #ff69b4; /* Başlık rengini pembe yaptık */
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.cat-gif {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 2px solid #ff69b4; /* Kedi GIF'ine pembe çerçeve */
+}
+
+/* Gizli sınıfı */
+.hidden {
+    display: none;
+}
+
+/* Animasyonlar */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1); /* Hafifçe büyür */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Medya sorguları: Küçük ekranlar için düzenlemeler */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+    .container {
+        padding: 30px 40px;
+        min-height: 250px;
+    }
+    button {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+    #noButton {
+        transform: translateX(calc(-50% + 120px)); /* Mobil için biraz daha yakın */
+    }
+    #surpriseMessage h2 {
+        font-size: 1.5em;
+    }
+    body::before,
+    body::after {
+        font-size: 2em; /* Mobil kalpleri küçült */
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 20px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    .buttons {
+        flex-direction: column; /* Butonları alt alta getir */
+        gap: 15px;
+    }
+    #noButton {
+        position: relative; /* Mobil için normal akışa döndür */
+        left: auto;
+        transform: none;
+    }
+}

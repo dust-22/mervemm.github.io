@@ -1,0 +1,176 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Ana Arka Plan Ayarı */
+    /* Aşağıdaki satırı aktif ederek arka plan resmi koyabilirsin */
+    /* Örnek: background-image: url('arka-plan.jpg'); */
+    background-image: url('arkaplan.jpg'); /* <- Burayı değiştir veya istediğin resmi ekle */
+    background-color: #000; /* Resim yüklenmezse siyah görünür */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #eee;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Köşelerdeki Kalpler */
+body::before,
+body::after {
+    content: '❤️';
+    font-size: 3em;
+    position: absolute;
+    z-index: 0;
+    animation: pulse 1.5s infinite alternate;
+    color: #ff69b4;
+}
+
+body::before {
+    top: 20px;
+    left: 20px;
+}
+
+body::after {
+    bottom: 20px;
+    right: 20px;
+}
+
+.container {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 40px 60px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h1 {
+    color: #ffb6c1;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    position: relative;
+    width: 100%;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 2;
+}
+
+#yesButton {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#yesButton:hover {
+    background-color: #45a049;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+#noButton {
+    background-color: #f44336;
+    color: white;
+    position: absolute;
+    left: 50%;
+    transform: translateX(calc(-50% + 150px));
+}
+
+#noButton:hover {
+    background-color: #da190b;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Sürpriz mesajın stilleri */
+#surpriseMessage {
+    margin-top: 40px;
+    animation: fadeIn 1s ease-out forwards;
+    color: #fff;
+    text-align: center;
+    /* Sürpriz mesajı için arka plan resmi ayarı */
+    background-image: url('.jpg'); /* Burayı kendi sürpriz resminle değiştir */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+#surpriseMessage h2 {
+    color: #ff69b4;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.cat-gif {
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 2px solid #ff69b4;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Animasyonlar */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Mobil uyumluluk */
+@media (max-width: 768px) {
+    h1 { font-size: 2em; }
+    .container { padding: 30px 40px; min-height: 250px; }
+    button { padding: 12px 25px; font-size: 1em; }
+    #noButton { transform: translateX(calc(-50% + 120px)); }
+    #surpriseMessage h2 { font-size: 1.5em; }
+    body::before, body::after { font-size: 2em; }
+}
+
+@media (max-width: 480px) {
+    .container { padding: 20px 20px; }
+    h1 { font-size: 1.8em; }
+    .buttons { flex-direction: column; gap: 15px; }
+    #noButton { position: relative; left: auto; transform: none; }
+}
